@@ -1,0 +1,11 @@
+# Exclude root files and directories (keep only Phase folders)
+*.ipynb
+.DS_Store
+.vscode/
+*.pyc
+__pycache__/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.env
