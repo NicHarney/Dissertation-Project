@@ -127,6 +127,7 @@ def run():
                 log_loss.append(log_loss_row)
 
             season_predictions = season_predictions.sort_values(by='Points', ascending=False).reset_index(drop=True)
+            season_predictions['Rank'] = season_predictions.index + 1
             season_predictions.to_csv(f'../Data/{name}_{season}_predictions.csv', index=False)
             total_log_loss = np.mean(log_loss)
             total_brier_score = np.mean(brier_score)
