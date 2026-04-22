@@ -133,6 +133,7 @@ def run():
             log_loss_avg = log_loss_total / len(y_test)
             brier_score_avg = brier_score_total / len(y_test)
             season_predictions = season_predictions.sort_values(by='Points', ascending=False).reset_index(drop=True)
+            season_predictions['Rank'] = season_predictions.index + 1
             season_predictions.to_csv(f'../data/processed/predictions_{name}_{test_season}.csv', index=False)
         
             report = classification_report(y_test, y_pred, output_dict=True)
