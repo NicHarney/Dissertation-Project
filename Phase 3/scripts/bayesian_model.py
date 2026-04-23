@@ -171,7 +171,7 @@ def run():
         home_stats['home_matches'] += 1
         away_stats['away_matches'] += 1
 
-        # update home team attack and defence
+        # update home team attack and defence using bayesian updating
         error_home = match['home_xG'] - home_xg
         home_stats['attack_mean_home'] += learning_rate * error_home
         home_stats['defence_mean_home'] += learning_rate * (match['away_xG'] - away_xg)

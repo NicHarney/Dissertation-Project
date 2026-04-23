@@ -133,6 +133,8 @@ def run():
             total_brier_score = np.mean(brier_score)
             total_accuracy = (wins / matches ) * 100
 
+
+            
             evaluation_row = {}
             evaluation_row.update({
             "Model": model,
