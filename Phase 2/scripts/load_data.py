@@ -3,7 +3,11 @@ def run():
     print("Loading dataset...")
     from understatapi import UnderstatClient
     import pandas as pd
+    import os
 
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    DATA_DIR = os.path.join(BASE_DIR, "..", "Data")
+    os.makedirs(DATA_DIR, exist_ok=True)
     seasons = ["2017", "2018", "2019", "2020"]
     all_data = []
 
@@ -33,11 +37,11 @@ def run():
             
             df = pd.DataFrame(rows)
             
-            df.to_csv(f"../Data/epl_{season}.csv", index=False)
+            df.to_csv(os.path.join(DATA_DIR,f"epl_{season}.csv"), index=False)
             all_data.append(df)
 
     combined = pd.concat(all_data, ignore_index=True)
-    combined.to_csv("../Data/epl_all_seasons.csv", index=False)
+    combined.to_csv(os.path.join(DATA_DIR,"epl_all_seasons.csv"), index=False)
 
     print("Saved all seasons.")
 if __name__ == "__main__":

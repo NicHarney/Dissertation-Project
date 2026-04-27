@@ -32,7 +32,7 @@ Phase 3 buils on Phase 2 by implementing the Laplace, Negative Binomial and Baye
 
 ### Data source Declaration
 The data for Phase 1 has been obtained from [football-data](https://www.football-data.co.uk/data.php). The workbooks used are store in /Phase 1/Data/Raw.
-The data for Phase 2 and 3 has been obtained from [understat](https://understat.com/). The datasets used cannot be stored on github, there is a python script included which can download the datasets locally.
+The data for Phase 2 and 3 has been obtained from [understat](https://understat.com/). The datasets used cannot be stored on github, there is a python script included which can download the datasets locally. **Only run this local to device, not on github**.
 
 ## Installation Requirements
 - python version 3.13.2 or later

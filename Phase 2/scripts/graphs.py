@@ -96,9 +96,9 @@ def run():
 
     # plot small multiples of home win, draw and away win for predicted results each model
     
-    csvs = ['matches_with_predictions', 'matches_with_strengths_predictions', 'matches_with_strengths_weighted_form_predictions', 'matches_with_strengths_weighted_opponents_predictions']
+    csvs = ['matches_with_strengths_predictions', 'matches_with_strengths_weighted_predictions', 'matches_with_strengths_weighted_form_predictions', 'matches_with_strengths_weighted_opponents_predictions']
     
-    all_seasons = pd.read_csv('../Data/matches_with_predictions.csv')['Result']
+    all_seasons = pd.read_csv('../Data/matches_with_strengths_predictions.csv')['Result']
     width = 0.2
     models = ['Strengths', 'Strength Weighted', 'Strength Weighted + Form', 'Strength Weighted + Opponents']
     h_values = []
