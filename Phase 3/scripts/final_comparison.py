@@ -4,7 +4,7 @@ def run():
     import matplotlib.pyplot as plt
     import pandas as pd
     import numpy as np
-
+    from collections import Counter
     df_phase1 = pd.read_csv('../../Phase 1/data/processed/rolling_evaluation_results.csv')
     df_phase2 = pd.read_csv('../../Phase 2/Data/season_evaluation.csv')
     df_phase3 = pd.read_csv('../Data/season_evaluation.csv')
@@ -66,6 +66,9 @@ def run():
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
+
+
+
 
 if __name__ == "__main__":
     run()

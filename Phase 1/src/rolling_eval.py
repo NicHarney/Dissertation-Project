@@ -105,6 +105,9 @@ def run():
             season_predictions = pd.DataFrame()
             season_predictions['Team'] = current_seasondf['HomeTeam'].unique()
             season_predictions['Points'] = 0
+            home_wins = 0
+            draws = 0
+            away_wins = 0
 
             for i in range(len(y_test)):
                 home_team = current_seasondf['HomeTeam'].iloc[i]
@@ -122,11 +125,14 @@ def run():
                 # if model predicts a team to win, allocate points  
                 if y_pred[i] == 'H':
                     season_predictions.loc[season_predictions['Team'] == home_team, 'Points'] += 3
+                    home_wins += 1
                 elif y_pred[i] == 'D':
                     season_predictions.loc[season_predictions['Team'] == home_team, 'Points'] += 1
                     season_predictions.loc[season_predictions['Team'] == away_team, 'Points'] += 1
+                    draws += 1
                 elif y_pred[i] == 'A':
                     season_predictions.loc[season_predictions['Team'] == away_team, 'Points'] += 3
+                    away_wins += 1
                 log_loss_total += -np.log(max(prob, 1e-15)) 
 
             
@@ -151,7 +157,10 @@ def run():
             'F1_D': report['D']['f1-score'],
             'Precision_A': report['A']['precision'],
             'Recall_A': report['A']['recall'],
-            'F1_A': report['A']['f1-score']
+            'F1_A': report['A']['f1-score'],
+            'Home Wins': home_wins,
+            'Draws': draws,
+            'Away Wins': away_wins
         })
 
     rolling_results_df = pd.DataFrame(rolling_results)
@@ -169,7 +178,10 @@ def run():
         'F1_D': 'mean',
         'Precision_A': 'mean',
         'Recall_A': 'mean',
-        'F1_A': 'mean'
+        'F1_A': 'mean',
+        'Home Wins': 'sum',
+        'Draws': 'sum',
+        'Away Wins': 'sum'
     }).reset_index()
 
     # calculate standard deviation of accuracy for each model

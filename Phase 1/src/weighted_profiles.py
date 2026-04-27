@@ -31,7 +31,6 @@ def run():
             team_data = all_stats[all_stats['Team'] == team].sort_values(by='Div', ascending=True)  
 
             seasons_count = len(team_data)
-
             weights = np.arange(1, seasons_count + 1)
             # Normalize weights to sum to 1
             weights = weights / weights.sum()  
@@ -49,9 +48,6 @@ def run():
 
         team_weightings = pd.DataFrame(results)
             
-
-
-        # do weightings for previous seasons for training next seasons
 
         # factor in teams that have just been promoted in the target season and never before
         if season == '2020-21':
@@ -78,6 +74,7 @@ def run():
                     lower_quartiles = team_weightings.select_dtypes(include='number').quantile(0.25)
                     upper_quartiles = team_weightings.select_dtypes(include='number').quantile(0.75)
                     new_row = {}
+                    # allocate promoted teams with no premier league history the lower quartile positive stats and upper quartile negative stats
                     for col in stat_columns:
                         if col in negative_stats:
                             new_row[col] = upper_quartiles[col]
@@ -89,6 +86,7 @@ def run():
                     new_row['seasons_count'] = 0
                     team_weightings = pd.concat([team_weightings, pd.DataFrame([new_row])], ignore_index=True)
                 else:
+                    # if promoted teams have premier league history, use this data for stats
                     seasons_count = len(team_data)
                     weights = np.arange(1, seasons_count + 1)
                     weights = weights / weights.sum() 

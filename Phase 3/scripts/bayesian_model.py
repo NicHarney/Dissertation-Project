@@ -173,17 +173,18 @@ def run():
 
         # update home team attack and defence using bayesian updating
         error_home = match['home_xG'] - home_xg
+        error_away = match['away_xG'] - away_xg
         home_stats['attack_mean_home'] += learning_rate * error_home
-        home_stats['defence_mean_home'] += learning_rate * (match['away_xG'] - away_xg)
+        home_stats['defence_mean_home'] += learning_rate * error_away
 
         # clamp home attack and defence means to be non-negative
         home_stats['attack_mean_home'] = max(0.01, home_stats['attack_mean_home'])
         home_stats['defence_mean_home'] = max(0.01, home_stats['defence_mean_home'])
 
         # update away team attack and defence
-        error_away = match['away_xG'] - away_xg
+       
         away_stats['attack_mean_away'] += learning_rate * error_away
-        away_stats['defence_mean_away'] += learning_rate * (match['home_xG'] - home_xg)
+        away_stats['defence_mean_away'] += learning_rate * error_home
 
         # clamp away attack and defence means to be non-negative
         away_stats['attack_mean_away'] = max(0.01, away_stats['attack_mean_away'])
