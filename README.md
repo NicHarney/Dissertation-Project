@@ -48,6 +48,7 @@ The data for Phase 2 and 3 has been obtained from [understat](https://understat.
 These can be installed using the requirements.txt file through the following terminal code: `pip install -r requirements.txt`
 
 ## Running the project
+For running this project, it must be run **in a local environment, in order to see graphs it must be ran in an IDE**.
 Each Phase has its own main.py file, so they should be run separately. It is important to note that before running the terminal code for each phase below, **we must cd into the root directory**. Run the project through the terminal as follows:
 
 ### Phase 1 
