@@ -35,7 +35,7 @@ The data for Phase 1 has been obtained from [football-data](https://www.football
 The data for Phase 2 and 3 has been obtained from [understat](https://understat.com/). The datasets used cannot be stored on github, there is a python script included which can download the datasets locally. **Only run this local to device, not on github**.
 
 ## Installation Requirements
-- python version 3.13.2 or later
+- python version 3.12.1 or later
 - aiohttp 3.13.3
 - matplotlib 3.10.8
 - nest_asyncio 1.6.0
